@@ -25,7 +25,8 @@ var Movie = React.createClass({
   },
 
   render: function() {
-    return (React.createElement('li', {key: this.props.movie.id},
+    return (
+      React.createElement('li', {key: this.props.movie.id},
         React.createElement('h2', {},
           React.createElement(MovieTitle, {title: this.props.movie.title}),
         ),
