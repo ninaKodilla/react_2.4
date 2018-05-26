@@ -2,18 +2,21 @@ var movies = [
   {
       id: 1,
       src: './img/hp.jpg',
+      alt: 'zdjecie harry potter',
       title: 'Harry Potter',
       desc: 'film o czarodzieju'
   },
   {
       id: 2,
       src: './img/kl.jpg',
+      alt: 'zdjęcie król lew',
       title: 'Król Lew',
       desc: 'Film o królu sawanny'
   },
   {
       id: 3,
       src:'./img/och.jpg',
+      alt: 'zdjęcie ojciec chrzestny',
       title: 'Ojciec Chrzestny',
       desc: 'Opowieść o nowojorskiej rodzinie mafijnej. Starzejący się Don Corleone pragnie przekazać władzę swojemu synowi.'
   }
@@ -29,7 +32,7 @@ var Movie = React.createClass({
       React.createElement('li', {key: this.props.movie.id},
       React.createElement(MovieTitle, {title: this.props.movie.title}),
       React.createElement(MovieDesc, {desc: this.props.movie.desc}),
-      React.createElement(MovieImg, {src: this.props.movie.src}),
+      React.createElement(MovieImg, {src: this.props.movie.src, alt: this.props.movie.alt}),
       )
     )
   }
@@ -86,7 +89,7 @@ var MovieImg = React.createClass({
 
   render: function() {
     return (
-      React.createElement('img', {src: this.props.src})
+      React.createElement('img', {src: this.props.src, alt: this.props.alt})
     )
   }
 });
