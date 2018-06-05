@@ -104,12 +104,11 @@ var Remove = React.createClass({
     };
   },
 
-  deleteMovie: function(index) {
-
+  deleteMovie: function(e) {
     this.setState({
       movies: this.state.movies.filter(movie =>{
-        movie !== index
-        console.log(movie)
+        movie !== e.target.value
+        console.log(e.target.value)
       })
     })
   },
