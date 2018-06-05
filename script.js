@@ -30,9 +30,10 @@ var Movie = React.createClass({
   render: function() {
     return (
       React.createElement('li', {key: this.props.movie.id},
-      React.createElement(MovieTitle, {title: this.props.movie.title}),
-      React.createElement(MovieDesc, {desc: this.props.movie.desc}),
-      React.createElement(MovieImg, {src: this.props.movie.src, alt: this.props.movie.alt}),
+        React.createElement(Remove,{}),
+        React.createElement(MovieTitle, {title: this.props.movie.title}),
+        React.createElement(MovieDesc, {desc: this.props.movie.desc}),
+        React.createElement(MovieImg, {src: this.props.movie.src, alt: this.props.movie.alt})
       )
     )
   }
@@ -94,6 +95,31 @@ var MovieImg = React.createClass({
     )
   }
 });
+
+var Remove = React.createClass({
+
+  getInitialState: function() {
+    return {
+        movies
+    };
+  },
+
+  deleteMovie: function(index) {
+
+    this.setState({
+      movies: this.state.movies.filter(movie =>{
+        movie !== index
+        console.log(movie)
+      })
+    })
+  },
+
+  render: function() {
+    return (
+      React.createElement('button', {onClick: this.deleteMovie}, 'Delete')
+    )
+  }
+})
 
 
 var movieElements = React.createElement(MovieElem, {movies: movies});
