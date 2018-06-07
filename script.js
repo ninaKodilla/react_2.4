@@ -58,8 +58,7 @@ var MovieElem = React.createClass({
     })
   },
 
-  render: function() {
-    console.log(this.deleteMovie)
+  render: function() {)
     return (
       React.createElement('div', {},
         React.createElement('h1', {}, 'Lista filmów'),
