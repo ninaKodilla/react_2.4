@@ -24,13 +24,14 @@ var movies = [
 
 var Movie = React.createClass({
   propTypes: {
-    movie: React.PropTypes.object.isRequired
+    movie: React.PropTypes.object.isRequired,
+    remove: React.PropTypes.func.isRequired
   },
 
   render: function() {
     return (
       React.createElement('li', {key: this.props.movie.id},
-        React.createElement(Remove,{}),
+        React.createElement(Remove,{remove: this.props.remove, id: this.props.movie.id}),
         React.createElement(MovieTitle, {title: this.props.movie.title}),
         React.createElement(MovieDesc, {desc: this.props.movie.desc}),
         React.createElement(MovieImg, {src: this.props.movie.src, alt: this.props.movie.alt})
@@ -45,13 +46,26 @@ var MovieElem = React.createClass({
     movies: React.PropTypes.array.isRequired
   },
 
+  getInitialState: function() {
+    return {
+        movies
+    };
+  },
+
+  deleteMovie: function(id) {
+    this.setState({
+      movies: this.state.movies.filter(movie => movie.id !== id)
+    })
+  },
+
   render: function() {
+    console.log(this.deleteMovie)
     return (
       React.createElement('div', {},
         React.createElement('h1', {}, 'Lista filmów'),
         React.createElement('ul', {},
-          this.props.movies.map(function(movie) {
-            return React.createElement(Movie, {key: movie.id, movie: movie});
+          this.state.movies.map(function(movie) {
+            return React.createElement(Movie, {key: movie.id, movie: movie, remove: () => this.deleteMovie.bind(this)});
           })
         )
       )
@@ -97,25 +111,14 @@ var MovieImg = React.createClass({
 });
 
 var Remove = React.createClass({
-
-  getInitialState: function() {
-    return {
-        movies
-    };
-  },
-
-  deleteMovie: function(e) {
-    this.setState({
-      movies: this.state.movies.filter(movie =>{
-        movie !== e.target.value
-        console.log(e.target.value)
-      })
-    })
+  propTypes: {
+    id: React.PropTypes.number.isRequired,
+    remove: React.PropTypes.func.isRequired
   },
 
   render: function() {
     return (
-      React.createElement('button', {onClick: this.deleteMovie}, 'Delete')
+      React.createElement('button', {onClick: () => { this.props.remove(this.props.id) }}, 'Delete')
     )
   }
 })
