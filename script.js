@@ -58,7 +58,7 @@ var MovieElem = React.createClass({
     })
   },
 
-  render: function() {)
+  render: function() {
     return (
       React.createElement('div', {},
         React.createElement('h1', {}, 'Lista filmów'),
