@@ -63,9 +63,9 @@ var MovieElem = React.createClass({
       React.createElement('div', {},
         React.createElement('h1', {}, 'Lista filmów'),
         React.createElement('ul', {},
-          this.state.movies.map(function(movie) {
-            return React.createElement(Movie, {key: movie.id, movie: movie, remove: () => this.deleteMovie.bind(this)});
-          })
+        this.state.movies.map(function(movie) {
+          return React.createElement(Movie, {key: movie.id, movie: movie, remove: this.deleteMovie});
+        }.bind(this))
         )
       )
     )
